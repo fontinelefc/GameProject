@@ -18,11 +18,11 @@ class Menu:
         pygame.mixer_music.play(-1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(text_size= 50, text= "Fly", text_color= (255, 54, 69), text_center_pos=  (288, 70))
-            self.menu_text(text_size=50, text="Scape", text_color=(255, 54, 69), text_center_pos=(288, 120))
+            self.menu_text(text_size= 80, text= "Fly", text_color= (255, 54, 69), text_center_pos=  (288, 70))
+            self.menu_text(text_size=80, text="Scape", text_color=(255, 54, 69), text_center_pos=(288, 125))
 
             for i in range(len(MENU_OPTION)):
-                self.menu_text(text_size=20, text=MENU_OPTION[i],text_color=(225, 255, 255), text_center_pos=(288, 180 + 25 * i))
+                self.menu_text(text_size=40, text=MENU_OPTION[i],text_color=(225, 255, 255), text_center_pos=(288, 190 + 30 * i))
 
             pygame.display.flip()
 
