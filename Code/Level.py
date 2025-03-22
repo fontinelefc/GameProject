@@ -11,7 +11,7 @@ class Level:
         self.window = window
         self.name = name
         self.game_mode = game_mode
-        self.entity_list = listEntity = []
+        self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1Bg'))
 
     def run(self, ):
