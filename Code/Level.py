@@ -6,19 +6,21 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
+from Code.Const import EVENT_ENEMY
 from Code.Entity import Entity
 from Code.EntityFactory import EntityFactory
 
 
 class Level:
     def __init__(self, window, name, game_mode):
+        self.timeout = 25000
         self.window = window
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        self.timeout = 20000
+        pygame.time.set_timer(EVENT_ENEMY, 2000)
 
     def run(self, ):
         clock = pygame.time.Clock()
@@ -33,6 +35,8 @@ class Level:
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                if event.type == EVENT_ENEMY:
+                    self.entity_list.append(EntityFactory.get_entity('Enemy1'))
 
             self.level_text(text_size=14, text=f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', text_color=(255, 255, 255), text_pos=(60, 5))
             self.level_text(text_size=14, text=f'fps {clock.get_fps() :.0f}', text_color=(255, 255, 255), text_pos=(20, 300))
