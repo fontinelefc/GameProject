@@ -3,6 +3,7 @@
 import random
 
 from Code.Background import Background
+from Code.Enemy import Enemy
 from Code.Player import Player
 
 
@@ -18,9 +19,9 @@ class EntityFactory:
                 return list_bg
 
             case 'Player1':
-                return Player('Player1', position=(10, 100))
+                return Player('Player1', (10, 100))
 
             case 'Enemy1':
-                return Player('Enemy1', position=(576 + 10, random.randint(0, 324)))
+                return Enemy('Enemy1', (576 + 10, random.randint(0, 324 - 20)))
             case 'Enemy2':
-                return Player('Enemy2', position=(576 + 10, random.randint(0, 324)))
+                return Enemy('Enemy2', (576 + 10, random.randint(0, 324 - 20)))

@@ -6,6 +6,7 @@ MENU_OPTION = ('NEW GAME',
                'EXIT')
 
 # E
+EVENT_ENEMY = pygame.USEREVENT + 1
 ENTITY_SPEED = {
     'level1Bg0': 0,
     'level1Bg1': 2,
@@ -16,8 +17,7 @@ ENTITY_SPEED = {
     'level1Bg6': 1,
     'level1Bg7': 1,
     'Player1': 5,
-    'Enemy1': 4,
-    'Enemy2': 6,
+    'Enemy1': 6,
+    'Enemy2': 4,
 }
 
-EVENT_ENEMY = pygame.USEREVENT + 1

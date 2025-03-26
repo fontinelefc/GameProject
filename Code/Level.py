@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import random
 import sys
+from random import choice
 
 import pygame.display
 from pygame import Surface, Rect
@@ -20,7 +22,7 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        pygame.time.set_timer(EVENT_ENEMY, 2000)
+        pygame.time.set_timer(EVENT_ENEMY, 4000)
 
     def run(self, ):
         clock = pygame.time.Clock()
@@ -36,7 +38,8 @@ class Level:
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    self.entity_list.append(EntityFactory.get_entity('Enemy1'))
+                    choice = random.choice(('Enemy1','Enemy2'))
+                    self.entity_list.append(EntityFactory.get_entity(choice))
 
             self.level_text(text_size=14, text=f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', text_color=(255, 255, 255), text_pos=(60, 5))
             self.level_text(text_size=14, text=f'fps {clock.get_fps() :.0f}', text_color=(255, 255, 255), text_pos=(20, 300))
