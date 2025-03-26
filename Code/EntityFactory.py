@@ -15,5 +15,5 @@ class EntityFactory:
                     list_bg.append(Background(f'level1Bg{i}', (576,0)))
                 return list_bg
 
-            case 'Player':
+            case 'Player1':
                 return Player('Player1', position=(50, 108))
