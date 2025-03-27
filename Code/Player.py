@@ -1,7 +1,9 @@
 import pygame
 
-from Code.Const import ENTITY_SPEED
+from Code.Const import ENTITY_SPEED, PLAYER_KEY_SHOOT
 from Code.Entity import Entity
+from Code.PlayerShot import PlayerShot
+
 
 class Player(Entity):
     def __init__(self, name: str, position: tuple):
@@ -22,3 +24,8 @@ class Player(Entity):
             self.rect.centerx += ENTITY_SPEED[self.name]
 
         pass
+
+    def shoot(self):
+        pressed_key = pygame.key.get_pressed()
+        if pressed_key[PLAYER_KEY_SHOOT[self.name]]:
+            return PlayerShot(name=f'{self.name}Shot', position=(self.rect.centerx, self.rect.centery))

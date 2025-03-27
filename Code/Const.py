@@ -17,6 +17,7 @@ ENTITY_SPEED = {
     'level1Bg6': 1,
     'level1Bg7': 1,
     'Player1': 5,
+    'Player1Shot': 7,
     'Enemy1': 6,
     'Enemy2': 4,
 }
@@ -32,4 +33,7 @@ ENTITY_HEALTH = {
     'Player1': 300,
     'Enemy1': 45,
     'Enemy2': 30,
+}
+PLAYER_KEY_SHOOT = {
+    'Player1': pygame.K_RCTRL
 }

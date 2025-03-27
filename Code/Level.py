@@ -12,6 +12,7 @@ from Code.Const import EVENT_ENEMY
 from Code.Entity import Entity
 from Code.EntityFactory import EntityFactory
 from Code.EntityMediator import EntityMediator
+from Code.Player import Player
 
 
 class Level:
@@ -23,7 +24,7 @@ class Level:
         self.entity_list: list[Entity] = []
         self.entity_list.extend(EntityFactory.get_entity('level1Bg'))
         self.entity_list.append(EntityFactory.get_entity('Player1'))
-        pygame.time.set_timer(EVENT_ENEMY, 4000)
+        pygame.time.set_timer(EVENT_ENEMY, 1000)
 
     def run(self, ):
         clock = pygame.time.Clock()
@@ -33,6 +34,8 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if isinstance(ent, Player):
+                    self.entity_list.append(ent.shoot())
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
