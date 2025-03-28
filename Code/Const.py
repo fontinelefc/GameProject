@@ -1,6 +1,10 @@
 # M
 import pygame
 
+ENTITY_SHOT_DELAY = {
+    'Player1': 20
+}
+
 MENU_OPTION = ('NEW GAME',
                'SCORE',
                'EXIT')
@@ -31,6 +35,7 @@ ENTITY_HEALTH = {
     'level1Bg6': 999,
     'level1Bg7': 999,
     'Player1': 300,
+    'Player1Shot': 1,
     'Enemy1': 45,
     'Enemy2': 30,
 }
