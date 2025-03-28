@@ -2,14 +2,30 @@
 import pygame
 
 ENTITY_SHOT_DELAY = {
-    'Player1': 20
+    'Player1': 7
 }
 
 MENU_OPTION = ('NEW GAME',
                'SCORE',
                'EXIT')
 
-# E
+ENTITY_DAMAGE = {
+    'level1Bg0': 0,
+    'level1Bg1': 0,
+    'level1Bg2': 0,
+    'level1Bg3': 0,
+    'level1Bg4': 0,
+    'level1Bg5': 0,
+    'level1Bg6': 0,
+    'level1Bg7': 0,
+    'Player1': 1,
+    'Player1Shot': 15,
+    'Enemy1': 1,
+    'Enemy2': 1,
+
+}
+
+
 EVENT_ENEMY = pygame.USEREVENT + 1
 ENTITY_SPEED = {
     'level1Bg0': 0,
@@ -34,11 +50,11 @@ ENTITY_HEALTH = {
     'level1Bg5': 999,
     'level1Bg6': 999,
     'level1Bg7': 999,
-    'Player1': 300,
+    'Player1': 45,
     'Player1Shot': 1,
     'Enemy1': 45,
     'Enemy2': 30,
 }
 PLAYER_KEY_SHOOT = {
-    'Player1': pygame.K_RCTRL
+    'Player1': pygame.K_LCTRL
 }

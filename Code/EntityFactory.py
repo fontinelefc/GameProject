@@ -22,6 +22,6 @@ class EntityFactory:
                 return Player('Player1', (10, 100))
 
             case 'Enemy1':
-                return Enemy('Enemy1', (576 + 10, random.randint(0, 324 - 20)))
+                return Enemy('Enemy1', (576 + 10, random.randint(0, 324 - 40)))
             case 'Enemy2':
-                return Enemy('Enemy2', (576 + 10, random.randint(0, 324 - 20)))
+                return Enemy('Enemy2', (576 + 10, random.randint(0, 324 - 40)))
