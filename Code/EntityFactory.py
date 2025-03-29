@@ -19,7 +19,7 @@ class EntityFactory:
                 return list_bg
 
             case 'Player1':
-                return Player('Player1', (10, 100))
+                return Player('Player1', (260, 140))
 
             case 'Enemy1':
                 return Enemy('Enemy1', (576 + 10, random.randint(0, 324 - 40)))

@@ -5,6 +5,7 @@ import sys
 from random import choice
 
 import pygame.display
+from dulwich.porcelain import remove
 from pygame import Surface, Rect
 from pygame.font import Font
 
@@ -38,6 +39,8 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'Player1':
+                    self.level_text(text_size=14, text=f'Health: {ent.health} | Score: {ent.score}', text_color=(10, 32, 66), text_pos=(60, 20))
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -46,6 +49,7 @@ class Level:
                 if event.type == EVENT_ENEMY:
                     choice = random.choice(('Enemy1','Enemy2'))
                     self.entity_list.append(EntityFactory.get_entity(choice))
+
 
             self.level_text(text_size=14, text=f'{self.name} - Timeout: {self.timeout / 1000 :.1f}s', text_color=(255, 255, 255), text_pos=(60, 5))
             self.level_text(text_size=14, text=f'fps {clock.get_fps() :.0f}', text_color=(255, 255, 255), text_pos=(20, 300))
