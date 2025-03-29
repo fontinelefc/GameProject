@@ -27,11 +27,42 @@ class Level:
         self.entity_list.append(EntityFactory.get_entity('Player1'))
         pygame.time.set_timer(EVENT_ENEMY, 1000)
 
+        # Carregar a imagem de fundo para a tela de Game Over
+        self.game_over_bg = pygame.image.load('./asset/orig_gameover.png').convert_alpha()  # Substitua pelo caminho correto
+        self.game_over_bg = pygame.transform.scale(self.game_over_bg, (self.window.get_width(), self.window.get_height()))  # Ajusta o tamanho para a tela
     def run(self, ):
         clock = pygame.time.Clock()
 
         while True:
             clock.tick(30)
+            self.window.fill((0, 0, 0))  # Limpa a tela
+
+            # Verifica se o jogador morreu
+            player = next((ent for ent in self.entity_list if isinstance(ent, Player)), None)
+
+            if player is None or player.health <= 0:
+                # Exibe a tela de Game Over
+                self.window.blit(self.game_over_bg, (0, 0))  # Desenha a imagem de fundo na tela
+                self.level_text(text_size=50, text="GAME OVER", text_color=(255, 0, 0), text_pos=(275, 150))
+                self.level_text(text_size=20, text="[R] REINICIAR ou [Q] SAIR", text_color=(255, 255, 255), text_pos=(275, 290))
+                pygame.display.flip()
+
+                # Espera o jogador pressionar 'Q' para sair
+                waiting_for_input = True
+                while waiting_for_input:
+                    for event in pygame.event.get():
+                        if event.type == pygame.QUIT:
+                            pygame.quit()
+                            sys.exit()
+                        if event.type == pygame.KEYDOWN:
+                            if event.key == pygame.K_q:
+                                pygame.quit()
+                                sys.exit()  # Sai do jogo
+                            waiting_for_input = False  # Sai do loop de espera
+                            if event.key == pygame.K_r:
+                                self.reset_level()  # Reinicia o nível
+                            waiting_for_input = False  # Sai do loop de espera
+
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
@@ -57,7 +88,15 @@ class Level:
             pygame.display.flip()
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
-        pass
+
+    def reset_level(self):
+        self.entity_list.clear()  # Remove todas as entidades
+        self.entity_list.extend(EntityFactory.get_entity('level1Bg'))  # Recarrega o fundo
+        self.entity_list.append(EntityFactory.get_entity('Player1'))  # Recria o jogador
+        pygame.time.set_timer(EVENT_ENEMY, 1000)  # Reinicia o timer de inimigos
+
+    pass
+
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont("Lucida Sans Typewrite", size=text_size)
         text_surf: Surface = text_font.render(text, True, text_color).convert_alpha()
