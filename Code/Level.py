@@ -32,19 +32,23 @@ class Level:
         self.game_over_bg = pygame.transform.scale(self.game_over_bg, (self.window.get_width(), self.window.get_height()))  # Ajusta o tamanho para a tela
     def run(self, ):
         clock = pygame.time.Clock()
+        player_score = 0
 
         while True:
+
             clock.tick(30)
             self.window.fill((0, 0, 0))  # Limpa a tela
 
             # Verifica se o jogador morreu
             player = next((ent for ent in self.entity_list if isinstance(ent, Player)), None)
-
+            if player is not None:
+                player_score = player.score
             if player is None or player.health <= 0:
                 # Exibe a tela de Game Over
                 self.window.blit(self.game_over_bg, (0, 0))  # Desenha a imagem de fundo na tela
                 self.level_text(text_size=50, text="GAME OVER", text_color=(255, 0, 0), text_pos=(275, 150))
                 self.level_text(text_size=20, text="[R] REINICIAR ou [Q] SAIR", text_color=(255, 255, 255), text_pos=(275, 290))
+                self.level_text(text_size=30, text=f'***SCORE: {player_score}',text_color=(255, 255, 255), text_pos=(275, 230))
                 pygame.display.flip()
 
                 # Espera o jogador pressionar 'Q' para sair
